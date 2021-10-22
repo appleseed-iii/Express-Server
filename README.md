@@ -14,13 +14,17 @@ node index.js
 
 ## usage from a js console
 
+### a succesful fetch
+
 ```javascript
-// # success
 var response = await fetch("http://localhost:3000", {
   method: "GET",
 }).then(resp => {return resp.json()});
+```
 
-// # uncaught failure
+### an unsuccesful fetch
+
+```javascript
 var response = await fetch("http://localhost:3000/failure", {
   method: "GET",
 }).then(resp => {
@@ -34,8 +38,11 @@ var response = await fetch("http://localhost:3000/failure", {
   return resp.json()
 });
 console.log("this won't fire bc we didn't catch");
+```
 
-// # caught failure
+### catching that unsuccessful fetch v1
+
+```javascript
 try{
   var response = await fetch("http://localhost:3000/failure", {
     method: "GET",
@@ -49,12 +56,15 @@ try{
     // then handle the json response
     return resp.json()
   });
-  console.log("after");
+  console.log("this fires because we caught");
 } catch (e) {
   console.log(e.message);
 }
+```
 
-// # caught failure v2
+### catching that unsuccessful fetch v2
+
+```javascript
 var response = await fetch("http://localhost:3000/failure", {
   method: "GET",
 }).then(resp => {
@@ -71,5 +81,5 @@ var response = await fetch("http://localhost:3000/failure", {
   console.log(error);
 
 });
-console.log("after");
+console.log("this fires because we caught");
 ```
