@@ -56,10 +56,11 @@ try{
     // then handle the json response
     return resp.json()
   });
-  console.log("this fires because we caught");
+  console.log("this won't fire");
 } catch (e) {
   console.log(e.message);
 }
+console.log("this fires because we caught");
 ```
 
 ### catching that unsuccessful fetch v2
@@ -76,6 +77,7 @@ var response = await fetch("http://localhost:3000/failure", {
 }).then(resp => {
   // then handle the json response
   return resp.json()
+  console.log("this won't fire");
 }).catch(error => {
   // also catch any other errors
   console.log(error);
